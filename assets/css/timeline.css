@@ -1,0 +1,180 @@
+/* _sass/custom/timeline.scss */
+
+/* La ligne centrale verticale de la timeline */
+.timeline {
+  position: relative;
+  padding: 1rem 0;
+  
+  /* La ligne centrale — on utilise une pseudo-classe sur le conteneur */
+  &::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    /* On utilise la couleur d'accent de Chirpy pour rester cohérent */
+    background: var(--link-color);
+    transform: translateX(-50%);
+  }
+}
+
+/* Chaque entrée de la timeline */
+.timeline-item {
+  display: flex;
+  justify-content: flex-end; /* Par défaut à gauche */
+  padding-right: calc(50% + 2rem);
+  margin-bottom: 2rem;
+  position: relative;
+  
+  /* Les entrées paires passent à droite */
+  &:nth-child(even) {
+    justify-content: flex-start;
+    padding-right: 0;
+    padding-left: calc(50% + 2rem);
+  }
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 1rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  border: 2px solid var(--link-color);
+  
+  /* Couleurs par catégorie — chacune a sa signification visuelle */
+  &.certification { background: #f0a500; } /* Or pour les certifications */
+  &.htb_machine    { background: #9fef00; } /* Vert HTB pour les modules */
+  &.course        { background: #00d4aa; } /* Turquoise pour les cours externes */
+  &.blog          { background: #007bff; } /* Bleu pour les articles */
+  &.book          { background: #6f42c1; } /* Violet pour les livres */
+  &.lab           { background: #e83e8c; } /* Rose pour les labs */
+  }
+
+/* La carte de contenu */
+.timeline-content {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  max-width: 80;
+  
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  
+  .timeline-date {
+    font-size: 0.8rem;
+    color: var(--text-muted-color);
+    margin-bottom: 0.25rem;
+  }
+  
+  .timeline-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    
+    a {
+      color: var(--heading-color);
+      text-decoration: none;
+      
+      &:hover { color: var(--link-color); }
+    }
+  }
+  
+  .timeline-description {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin: 0;
+  }
+  
+  .timeline-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    background: var(--link-color);
+    color: white;
+    margin-top: 0.5rem;
+  }
+
+  .timeline-badge--in-progress {
+    background: transparent;
+    border: 1px solid var(--link-color);
+    color: var(--link-color);
+  }
+  
+  .timeline-badge--paused {
+    background: transparent;
+    border: 1px solid var(--text-muted-color);
+    color: var(--text-muted-color);
+  }
+}
+
+.timeline-certificate-btn {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--link-color);
+  border: 1px solid var(--link-color);
+  border-radius: 4px;
+  text-decoration: none;
+  
+  transition: background-color 0.15s ease, color 0.15s ease;
+  
+  &:hover {
+    background-color: var(--link-color);
+    color: white;
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline::before { left: 1rem; }
+  
+  .timeline-item,
+  .timeline-item:nth-child(even) {
+    justify-content: flex-start;
+    padding-left: 3rem;
+    padding-right: 0;
+  }
+  
+  .timeline-dot {
+    left: 1rem;
+  }
+  
+  .timeline-content { max-width: 100%; }
+}
+
+.timeline-item[data-category="certification"] .timeline-content {
+  border-left: 3px solid #f0a500;
+  background: rgba(240, 165, 0, 0.05);
+}
+
+.timeline-item[data-category="htb_machine"] .timeline-content {
+  border-left: 3px solid #9fef00;
+  background: rgba(159, 239, 0, 0.05);
+}
+
+.timeline-item[data-category="course"] .timeline-content {
+  border-left: 3px solid #00d4aa;
+  background: rgba(0, 212, 170, 0.05);
+}
+
+.timeline-item[data-category="blog"] .timeline-content {
+  border-left: 3px solid #007bff;
+  background: rgba(0, 123, 255, 0.05);
+}
+
+.timeline-item[data-category="book"] .timeline-content {
+  border-left: 3px solid #6f42c1;
+  background: rgba(111, 66, 193, 0.05);
+}
+
+.timeline-item[data-category="lab"] .timeline-content {
+  border-left: 3px solid #e83e8c;
+  background: rgba(232, 62, 140, 0.05);
+}
+
