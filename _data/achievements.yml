@@ -1,14 +1,14 @@
+- date: "2026-03-28"
+  title: "HTB ProLab — Dante"
+  category: "htb_machine"
+  link: "https://app.hackthebox.com/prolabs/4"
+  description: "Enterprise network penetration testing simulation featuring 15 interconnected Windows and Linux machines across multiple network segments. Executed complex pivot chains through segmented infrastructure, systematic enumeration across diverse systems, privilege escalation leveraging platform-specific techniques, and comprehensive Active Directory compromise. Completed using Sliver C2 framework to develop proficiency with modern command and control operations and to practice maintaining access and managing sessions across extended multi-system engagements."
+
 - date: "2026-03-18"
   title: "Process Injection Attacks and Detection"
   category: "course"
   link: "https://academy.hackthebox.com/course/preview/process-injection-attacks-and-detection"
   description: "Early Bird APC, TLS Callbacks, Reflective DLL Injection, Process Hollowing and others from both an offensive and defensive perspective."
-
-- date: "2026-03-16"
-  title: "HTB ProLab — Dante"
-  category: "htb_machine"
-  link: "https://app.hackthebox.com/prolabs/4"
-  description: "Enterprise network penetration testing simulation featuring 15 interconnected Windows and Linux machines across multiple network segments. Executed complex pivot chains through segmented infrastructure, systematic enumeration across diverse systems, privilege escalation leveraging platform-specific techniques, and comprehensive Active Directory compromise. Completed using Sliver C2 framework to develop proficiency with modern command and control operations and to practice maintaining access and managing sessions across extended multi-system engagements."
 
 - date: "2026-03-07"
   title: "LD_PRELOAD Hijacking — From the Linker to Shellcode Injection"
@@ -34,7 +34,7 @@
   title: "Red Team Development and Operations: A Practical Guide"
   category: "book"
   link: "https://redteam.guide/"
-  description: "Comprehensive guide to structuring, planning and executing  red team operations at an organizational level. Shaped my understanding of how adversary emulation programs are built and operationalized beyond individual engagements."
+  description: "Comprehensive guide to structuring, planning and executing red team operations at an organizational level. Shaped my understanding of how adversary emulation programs are built and operationalized beyond individual engagements."
 
 - date: "2025-10-25"
   title: "HTB Certified Penetration Testing Specialist — Path"
@@ -56,7 +56,7 @@
   status: "in_progress"
   progress: "~67%"
   link: "https://portswigger.net/web-security"
-  description: "Comprehensive web application security training covering SQLi, XSS, SSRF, authentication vulnerabilities, accesscontrol, CSRF, and advanced exploitation techniques. Hands-on labs on real-world vulnerability scenarios."
+  description: "Comprehensive web application security training covering SQLi, XSS, SSRF, authentication vulnerabilities, access control, CSRF, and advanced exploitation techniques. Hands-on labs on real-world vulnerability scenarios."
 
 - date: "2022-01-01"
   title: "Cryptography Engineering: Design Principles and Practical Applications"

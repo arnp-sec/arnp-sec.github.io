@@ -14,9 +14,9 @@ timezone: Asia/Tokyo
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: ARNP # the main title
+title: ARNP's Blog # the main title
 
-tagline: ARNP's blog # it will display as the subtitle
+tagline: A blog about cyber security, IT stuff and a journey to red teaming. # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   A blog about cyber security, IT stuff and a journey to red teaming.
@@ -98,7 +98,7 @@ theme_mode: dark # [light | dark]
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: ""
+#avatar:
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
