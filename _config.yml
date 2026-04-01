@@ -16,10 +16,10 @@ timezone: Asia/Tokyo
 
 title: "ARNP's Blog" # the main title
 
-tagline: 'A blog about cyber security, IT stuff and a journey to red teaming.' # it will display as the subtitle
+tagline: 'A blog about offensive security and a journey to red teaming.' # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  A blog about cyber security, IT stuff and a journey to red teaming.
+  A blog about offensive security and a journey to red teaming.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
