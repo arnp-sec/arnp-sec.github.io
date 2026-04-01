@@ -19,7 +19,7 @@ All techniques should only be used in authorized testing environments where you 
 
 ## 1. The Linux Linker
 
-To understand how `LD_PRELOAD` works, it is important to first understand what problem the dynamic linker was designed to solve and how it can be potentially be abused.
+To understand how `LD_PRELOAD` works, it is important to first understand what problem the dynamic linker was designed to solve and how it can potentially be abused.
 
 ### Why Is This Needed?
 
@@ -94,7 +94,7 @@ Checking the binary dependencies using `ldd`, we can see that all the dependenci
 ![]({{ site.baseurl }}/assets/images/posts/ld_preload-abuse/dynamic_ldd_ssh.png)
 
 This has meaningful offensive implications as a defender inspecting the binary with `readelf` only would get an incomplete picture of its runtime attack surface.
-If an attacker crafts a malicious `.so` library designed to shadow a symbol exported by a transitive dependency (a dependency from a dependecy, loaded recursively), a `readelf`-based inspection would show no evidence of the symbols from the malicious library being hooked. The malicious hook would only become visible when using the `ldd` command against the original binary or when inspecting the live process's `/proc/PID/maps` at runtime.
+If an attacker crafts a malicious `.so` library designed to shadow a symbol exported by a transitive dependency (a dependency from a dependency, loaded recursively), a `readelf`-based inspection would show no evidence of the symbols from the malicious library being hooked. The malicious hook would only become visible when using the `ldd` command against the original binary or when inspecting the live process's `/proc/PID/maps` at runtime.
 
 ![]({{ site.baseurl }}/assets/images/posts/ld_preload-abuse/ping_proc_maps.png)
 
@@ -102,7 +102,7 @@ This step is also a useful reconnaissance step before planning any injection usi
 
 ### Trusting the Linker
 
-The security of the entire library loading process rely on the implicit trust from applications against the linker. In other words, applications do not check whether or not the linker finds and loads the real `printf()` function. This is reinforced by the fact that the linker itself assumes that the libraries it finds are legitimate.
+The security of the entire library loading process relies on the implicit trust from applications against the linker. In other words, applications do not check whether or not the linker finds and loads the real `printf()` function. This is reinforced by the fact that the linker itself assumes that the libraries it finds are legitimate.
 
 The concept of the `LD_PRELOAD` environment variable (and of any other loading order overriding technique) violates this assumption by design as this mechanism is mainly used by developers to load and test new library versions or intercept functions for debugging, also opening a way for attackers to establish persistence over a system. 
 
@@ -162,7 +162,7 @@ We can confirm that `symbol_shadowing_poc.so` is called using the `LD_DEBUG=libs
 ![]({{ site.baseurl }}/assets/images/posts/ld_preload-abuse/symbol_shadowing_ld_debug.png)
 
 This technique is powerful but has two big weaknesses:
-* The attacker needs to wait for the program to call a specific function, which could also be called more often than expected, preventing the attack to be implemented or on the contrary, causing some system instability and increasing the chances of being detected.
+* The attacker needs to wait for the program to call a specific function, which could also be called more often than expected, preventing the attack from being implemented or on the contrary, causing some system instability and increasing the chances of being detected.
 * The malicious library must be injected in the linker search order, which may be either very complex or easily detectable by security solutions.
 
 ### Delivering the Library
@@ -182,7 +182,7 @@ The `/etc/ld.so.preload` file is a globally-monitored file and systems such as t
 Hopefully, there are multiple other stealthier alternatives to these two naive approaches. Those will be covered in the next sections.
 
 #### Virtual Environment Activation Scripts
-Used by developers in multiple languages, activation scripts are an effective vector on developer machines. When a Python developer runs `source .venv/bin/activate` to enable their Python virtual environment, the `activate` file may include a line such as `export LD_PRELOAD=/path/to/malicious/lib.so` to important the malicious library. Targeting `.venv/bin/deatctivate` is even more counterintuitive as an investigator auditing a Python project's virtual environment for malicious persistence would surely check the activation script instead of the deactivation script. Also, the variable set on deactivation would also be inherited by any process spawned in that shell session afterwards and would not be reset by the activation script, making it a powerful vector.
+Used by developers in multiple languages, activation scripts are an effective vector on developer machines. When a Python developer runs `source .venv/bin/activate` to enable their Python virtual environment, the `activate` file may include a line such as `export LD_PRELOAD=/path/to/malicious/lib.so` to import the malicious library. Targeting `.venv/bin/deactivate` is even more counterintuitive as an investigator auditing a Python project's virtual environment for malicious persistence would surely check the activation script instead of the deactivation script. Also, the variable set on deactivation would also be inherited by any process spawned in that shell session afterwards and would not be reset by the activation script, making it a powerful vector.
 
 #### Files Sourced by Other Files
 In a similar way to transitive dependencies, setting the `LD_PRELOAD` environment variable in a script loaded or sourced by another script would make the trail harder to follow. For example, an investigator examining a `.bashrc` file and seeing `. "$HOME/.cargo/env` (which is a common setup when installing Rust on a Linux machine) will likely not open the `.cargo/env` file. Still, infecting this rarely monitored and legitimate file may increase the chance of the `LD_PRELOAD` variable setting location to remain hidden. We may also extend this concept to other legitimate files such as `.zshrc` sourcing `$ZSH/oh-my-zsh.sh`.
@@ -194,7 +194,7 @@ In a similar way to transitive dependencies, setting the `LD_PRELOAD` environmen
 
 We have just seen that the classic symbol shadowing technique has several weakness and relies on a specific function being call by a program in order to execute the malicious payload.
 
-The constructor approach is fear more elegant and operationally useful as it allows to execute the malicious code at the instant the shared library is mapped into a process's address space, in other words, before `main()` is even called.
+The constructor approach is far more elegant and operationally useful as it allows to execute the malicious code at the instant the shared library is mapped into a process's address space, in other words, before `main()` is even called.
 
 ### The `.init_array` Mechanism
 
@@ -262,7 +262,7 @@ LD_PRELOAD=./target/release/libpreload.so ls
 ### What `.init_array` Does NOT Evade
 
 
-## 5. Avoiding Forb Bombs: Guard Clauses
+## 5. Avoiding Fork Bombs: Guard Clauses
 
 
 ### Process Filtering
